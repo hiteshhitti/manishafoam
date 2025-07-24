@@ -1,351 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mattress Company</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 56px;
-            margin: 0;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dreamking</title>
 
-        @media (max-width: 767.98px) {
-            body {
-                padding-top: 70px;
-            }
-        }
-        html, body {
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+  /* 🔥 GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
   overflow-x: hidden;
-}
-
-        .navbar-brand {
-            font-weight: bold;
-        }
-
-       .carousel-caption {
-    top: 50%;
-    transform: translateY(-50%);
-    display: block !important;
-    background: rgba(255, 255, 255, 0.5); /* translucent white */
-    padding: 1.5rem;
-    border-radius: 10px;
-    max-width: 90%;
-    margin: auto;
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
 }
 
 
-       .carousel-caption h1 {
-    color: rgb(0, 1, 4);
-    font-size: 3.25rem;
-    font-weight: bold;
-}
-
-.carousel-caption p {
-    color: rgb(0, 2, 10);
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-/* 🔽 Mobile-specific styling */
-@media (max-width: 768px) {
-    .carousel-caption {
-        padding: 0.75rem;
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
     }
 
-    .carousel-caption h1 {
-        font-size: 1.75rem;
+    .navbar img {
+      height: 50px;
     }
 
-    .carousel-caption p {
-        font-size: 1rem;
+    .navbar-links {
+      display: flex;
+      gap: 20px;
     }
-}
-@media (max-width: 768px) {
-  .carousel-caption {
-    max-width: 90%;
-    background: rgba(255, 255, 255, 0.7); /* Slightly more visible on mobile */
-  }
-}
-.carousel-caption {
-    background: rgba(255, 255, 255, 0.7);  /* already present */
-    border-radius: 20px;
-    padding: 1rem 2rem;
-    display: inline-block;
-    max-width: 90%;
-    height: 50%; /* 👈 Force content height */
-}
 
+    .navbar-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
 
-        .carousel-inner {
-            width: 100%;
-            max-height: 100vh;
-            overflow: hidden;
-        }
+    .navbar-links a:hover {
+      color: #f4c10f;
+    }
 
-        .carousel-inner img {
-            width: 100%;
-            height: auto;
-            max-height: 100vh;
-            object-fit: cover;
-        }
+    /* Mobile Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+    }
 
-        @media (min-width: 992px) {
-            .offcanvas-start {
-                display: none !important;
-            }
-        }
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 70%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 80px 30px;
+      transition: 0.4s;
+      z-index: 20;
+    }
 
-        .intro-section {
-            background: #f3f3f3;
-            padding: 60px 15px;
-        }
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+    }
 
-        .intro-section h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
+    .mobile-menu a:hover {
+      color: #f4c10f;
+    }
 
-        .intro-section p {
-            font-size: 1.1rem;
-            color: #555;
-        }
+    .mobile-menu.open {
+      left: 0;
+    }
 
-        .intro-image-single {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 10px;
-        }
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-        /* Opening Hours Section */
-        .opening-section {
-            position: relative;
-            background: url('https://images.unsplash.com/photo-1585559607313-2190e037fbc0?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
+    .slider-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
 
-        .opening-box {
-            background: #f3f4f6;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            width: 100%;
-            border-top: 8px solid #ff5722;
-        }
+    .slider-bg img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
 
-        .opening-box h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
+    .slider-bg img.active {
+      opacity: 1;
+    }
 
-        .opening-box p {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
 
-        .icon-text {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.05rem;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
 
-        .icon-text img {
-            width: 24px;
-            height: 24px;
-        }
-        @media (max-width: 768px) {
-  .carousel-inner img {
-    height: 400px !important;
-    object-fit: cover;
-  }
-}
+    .logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 120px;
+      animation: fadeInDown 1s ease-out;
+    }
 
+    .tagline {
+      font-family: 'Great Vibes', cursive;
+      font-size: 38px;
+      margin: 10px 0 30px;
+      animation: fadeInUp 1.5s ease-out;
+    }
 
-        @media (max-width: 768px) {
-            .opening-box {
-                padding: 1.5rem;
-            }
+    .btn {
+      padding: 12px 30px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 20px;
+      color: #f4c10f;
+      border: 2px solid #f4c10f;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      animation: fadeInUp 2s ease-out;
+    }
 
-            .opening-box h1 {
-                font-size: 2rem;
-            }
-        }
-        
-    </style>
+    .btn:hover {
+      background: #f4c10f;
+      color: #000;
+      box-shadow: 0 4px 20px rgba(244, 193, 15, 0.5);
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+
+    .arrow:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .arrow.left {
+      left: 20px;
+    }
+
+    .arrow.right {
+      right: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .logo {
+        font-size: 60px;
+      }
+
+      .tagline {
+        font-size: 22px;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from { transform: translateY(-40px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
-
 <body>
 
- <style>
-  /* Custom width for offcanvas in mobile */
-  @media (max-width: 991.98px) {
-    .offcanvas-half {
-      width: 50% !important;
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="backgroun1.jpg" alt="Logo" />
+    <div class="navbar-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#materials">Materials</a>
+      <a href="#our-products">Products</a>
+      <a href="#certificates-awards">certificate</a>
+      <a href="#footer">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#materials" onclick="closeMenu()">Materials</a>
+    <a href="#our-products" onclick="closeMenu()">Products</a>
+    <a href="#certificates-awards" onclick="closeMenu()">certificate</a>
+    <a href="#footer" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <!-- Background Slideshow -->
+    <div class="slider-bg">
+      <img src="backgound.webp" class="active" />
+      <img src="backgroun1.jpg" />
+      <img src="backgound2.webp" />
+      <img src="background3.webp" />
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Arrows -->
+    <div class="arrow left" onclick="prevSlide()">&#10094;</div>
+    <div class="arrow right" onclick="nextSlide()">&#10095;</div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <h1 class="logo">Manisha foam industries</h1>
+      <p class="tagline">Comfort Redefined – Sleep Like Never Before</p>
+
+
+        <!-- ✅ UPDATED -->
+<a href="#our-products" class="btn">Explore More</a>
+
+
+      
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    const images = document.querySelectorAll(".slider-bg img");
+    let current = 0;
+
+    function showSlide(index) {
+      images.forEach((img, i) => {
+        img.classList.remove("active");
+        if (i === index) img.classList.add("active");
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % images.length;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      current = (current - 1 + images.length) % images.length;
+      showSlide(current);
+    }
+
+    setInterval(nextSlide, 4000);
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("open");
+    }
+
+    function closeMenu() {
+      document.getElementById("mobileMenu").classList.remove("open");
+    }
+  </script>
+
+
+
+
+    <!-- about Section -->
+
+<!-- About Section -->
+<section class="about-section" id="about">
+  <div class="about-container">
+    <div class="about-image">
+      <img src="about3.png" alt="About Dreamking" />
+    </div>
+    <div class="about-text">
+      <h2>About us</h2>
+      <p>
+        At Dreamking, we bring your dreams to life through premium quality mattresses and bedding solutions. Combining comfort, durability, and elegance, we ensure every product is a masterpiece of craftsmanship and innovation.
+      </p>
+      <p>
+        With years of expertise and a passion for excellence, Dreamking has become a trusted name in sleep luxury. We believe that every individual deserves royal comfort — because you don't just sleep, you Dream like a King.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CSS -->
+<style>
+  .about-section {
+    padding: 80px 20px;
+    background: #fefefe;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+    gap: 40px;
+  }
+
+  .about-image img {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease;
+  }
+
+  .about-image img:hover {
+    transform: scale(1.05);
+  }
+
+  .about-text {
+    max-width: 600px;
+  }
+
+  .about-text h2 {
+    font-size: 48px;
+    color: #222;
+    margin-bottom: 20px;
+    font-family: 'Great Vibes', cursive;
+    color: #b8860b;
+  }
+
+  .about-text p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .about-text h2 {
+      font-size: 36px;
+    }
+
+    .about-text p {
+      font-size: 16px;
     }
   }
 </style>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="#">Manisha foam</a>
 
-    <!-- Mobile Toggle Button -->
-    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Desktop Nav Links -->
-    <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#timing">Timing </a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#material">Material</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#products">Products </a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#footer">Contact </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Mobile Offcanvas Menu -->
-   
-  <div class="offcanvas offcanvas-start offcanvas-half bg-dark text-white d-lg-none" tabindex="-1" id="mobileMenu">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title">Manisha foam</h5>
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#" data-bs-dismiss="offcanvas">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#about" data-bs-dismiss="offcanvas">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#timing" data-bs-dismiss="offcanvas">Timing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#material" data-bs-dismiss="offcanvas">Material</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#products" data-bs-dismiss="offcanvas">Product</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#footer" data-bs-dismiss="offcanvas">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const offcanvasElement = document.querySelector('.offcanvas');
-    const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
-    const mobileLinks = offcanvasElement.querySelectorAll('.nav-link');
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-
-        // First close the offcanvas menu
-        offcanvas.hide();
-
-        // Then scroll after slight delay
-        setTimeout(() => {
-          if (targetId && targetId.startsWith('#')) {
-            const target = document.querySelector(targetId);
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth' });
-            }
-          }
-        }, 300); // wait for offcanvas to fully close
-      });
-    });
-  });
-</script>
-
-
-
-    <!-- Carousel -->
-    <!-- Carousel -->
-<div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="./ChatGPT Image Jul 11, 2025, 08_59_29 PM.png" class="d-block w-100" alt="Mattress 1">
-            <div class="carousel-caption">
-                <h1>Manisha foam</h1>
-                <p>Comfort Redefined – Sleep Like Never Before</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="./home22.jpg" class="d-block w-100" alt="Mattress 2">
-            <div class="carousel-caption">
-                <h1>Manisha foam</h1>
-                <p>Comfort Redefined – Sleep Like Never Before</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="./image2.jpeg" class="d-block w-100"alt="Mattress 3">
-            <div class="carousel-caption">
-                <h1>Manisha foam</h1>
-                <p>Comfort Redefined – Sleep Like Never Before</p>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
-</div>
-
-
-    <!-- Introduction Section -->
-
-  
-    <section id="about"  class="intro-section container-fluidc">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0 text-center">
-                    <img src="about3.png" alt="Intro Image" class="intro-image-single">
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="mb-3">Introducing <br><strong>Manisha foam</strong></h2>
-                    <p>
-                        Upholstery Store in Mohali Chandigarh. With an extensive product range, we offer stylish curtains,
-                        roman shades, blinds, premium bedsheets, and wallpapers. Feel free to contact us for the best.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
     <!-- Opening Hours Section -->
       <div id="timing"></div>
@@ -379,6 +457,7 @@
 }
 
 .opening-box h1 {
+  font-family: 'Great Vibes', cursive;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -410,454 +489,417 @@
 }
 
 </style>
-<div id="material"></div>
-<!-- Materials Heading -->
-<section class="container py-5 text-center">
-  <h2 class="display-5 fw-bold">Materials</h2>
-  <p class="text-muted">Premium materials for the best sleep experience</p>
-</section>
 
 
 
 
+<!-- Materials Section -->
+<section id="materials" style="padding: 60px 20px; background: #fff;">
+  <h4 style="text-align: center; font-size: 2.7rem; margin-bottom: 40px; font-family: 'Great Vibes', cursive; color: #555;">
+  Materials
+</h4>
 
-<section class="materials-section">
-  <div class="material-card cotton">
-    <h2>Cotton</h2>
-    <p>
-      Cotton is highly absorbent and naturally breathable. It wicks away
-      moisture to preserve your comfort throughout the night.
-    </p>
-  </div>
-
-  <div class="material-card wool">
-    <h2>Wool</h2>
-    <p>
-      Wool wicks away moisture and is naturally antimicrobial, allows air
-      circulation for a cooler, fresher mattress.
-    </p>
-  </div>
-
-  <div class="material-card steel">
-    <h2>Steel Coil Core</h2>
-    <p>
-      As used in the best mattresses around the world, coil spring core
-      silently flexes & adapts to your body contours.
-    </p>
-  </div>
-
-  <div class="material-card latex">
-    <h2>Natural Latex</h2>
-    <p>
-      100% Natural Belgian Latex is breathable, long lasting & provides
-      incredible support free from synthetic blends.
-    </p>
-  </div>
-
-  
-
-
- 
-
-
-
-</section>
-<style>
-    .materials-section {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  padding: 2rem;
-  background: #f2f3f5;
-}
-
-.material-card {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  height: 400px;
-  border-radius: 10px;
-  padding: 1.5rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-}
-
-.material-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25);
-  transition: background 0.3s ease-in-out;
-  z-index: 0;
-}
-
-.material-card:hover::after {
-  background: rgba(0, 0, 0, 0.5); /* Hover dark overlay */
-}
-
-.material-card h2,
-.material-card p {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
-
-.material-card h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.material-card p {
-  font-size: 1rem;
-}
-
-/* Specific background images */
-.cotton {
-  background-image: url('./cotton.jpg');
-}
-.wool {
-  background-image: url('./wool.jpeg');
-}
-.steel {
-  background-image: url('./coil.jpeg');
-}
-.latex {
-  background-image: url('./latex.jpeg');
-}
-
-/* Responsive layout for mobile */
-@media (max-width: 768px) {
-  .materials-section {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .materials-section {
-    grid-template-columns: 1fr;
-  }
-}
-.material-card {
-  height: 500px; /* 🔼 Increased height */
-}
-
-/* Touch effect for mobile too */
-.material-card:active::after,
-.material-card:hover::after {
-  background: rgba(0, 0, 0, 0.5); /* 🔄 Dark overlay on hover + tap */
-}
-
-
-</style>
-
-<div id="products"></div>
-<section class="container py-5">
-  <h2 class="text-center fw-bold mb-5">Our Products</h2>
-
-  <div class="row g-4 justify-content-center">
-    
-    <!-- Product 1 -->
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="product-box">
-        <div class="product-image">
-          <img src="./matress.jpg" alt="Mattress">
-        </div>
-        <h5>Mattress</h5>
-        <ul class="product-features">
-          <li>High-density foam</li>
-          <li>Orthopedic support</li>
-          <li>Available in all sizes</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Product 2 -->
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="product-box">
-        <div class="product-image">
-          <img src="./curtain.jpg" alt="Curtains">
-        </div>
-        <h5>Curtains</h5>
-        <ul class="product-features">
-          <li>Blackout & Sheer styles</li>
-          <li>Custom stitching available</li>
-          <li>Elegant fabric choices</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Product 3 -->
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="product-box">
-        <div class="product-image">
-          <img src="bedsheet.jpg" alt="Bedsheet">
-        </div>
-        <h5>Bedsheet</h5>
-        <ul class="product-features">
-          <li>100% Cotton fabric</li>
-          <li>Vibrant color range</li>
-          <li>Fade-resistant print</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Product 4 -->
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="product-box">
-        <div class="product-image">
-          <img src="pillow.jpg" alt="Pillows">
-        </div>
-        <h5>Pillows</h5>
-        <ul class="product-features">
-          <li>Soft microfiber filling</li>
-          <li>Hypoallergenic material</li>
-          <li>Washable covers</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Product 5 -->
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="product-box">
-        <div class="product-image">
-          <img src="./blinds.jpg" alt="Blinds">
-        </div>
-        <h5>Blinds</h5>
-        <ul class="product-features">
-          <li>Manual & Motorized options</li>
-          <li>UV protection coating</li>
-          <li>Perfect for all windows</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Product 6 -->
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="product-box">
-        <div class="product-image">
-          <img src="./blanket.jpg" alt="Blankets">
-        </div>
-        <h5>Blankets</h5>
-        <ul class="product-features">
-          <li>Warm and lightweight</li>
-          <li>Available in prints & solids</li>
-          <li>All-season comfort</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- You can add more products below using same structure -->
-  </div>
-</section>
-
-<!-- STYLING -->
-<style>
-  @media (max-width: 576px) {
-    .materials-section {
-      grid-template-columns: 1fr;
+  <style>
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
     }
+
+    .material-card {
+      position: relative;
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transform: scale(0.8) translateY(50px);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.3s ease;
+    }
+
+    .material-card.animate {
+      transform: scale(1) translateY(0px);
+      opacity: 1;
+    }
+
+    .material-card:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 153, 255, 0.3);
+    }
+
+    .material-name {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+    }
+  </style>
+
+  <div class="materials-grid">
+    <div class="material-card" style="background-image: url('./rebonded\ form.webp');">
+      <div class="material-name">Rebonded Foam</div>
+    </div>
+    <div class="material-card" style="background-image: url('./natural latex.jpg');">
+      <div class="material-name">Natural Latex</div>
+    </div>
+    <div class="material-card" style="background-image: url('./pu form.jpg');">
+      <div class="material-name">PU Foam</div>
+    </div>
+    <div class="material-card" style="background-image: url('./HR FORM.jpg');">
+      <div class="material-name">HR Foam</div>
+    </div>
+    <div class="material-card" style="background-image: url('./memory\ form.webp');">
+      <div class="material-name">Memory Foam</div>
+    </div>
+    <div class="material-card" style="background-image: url('./coir form.webp');">
+      <div class="material-name">Coir Foam</div>
+    </div>
+    <div class="material-card" style="background-image: url('./softy form.jpg');">
+      <div class="material-name">Softy Foam</div>
+    </div>
+    <div class="material-card" style="background-image: url('./pocket spring form.webp');">
+      <div class="material-name">Pocket Spring</div>
+    </div>
+    <div class="material-card" style="background-image: url('./bonnel spring form.jpg');">
+      <div class="material-name">Bonnel Spring</div>
+    </div>
+    <div class="material-card" style="background-image: url('./eurotop form.jpg');">
+      <div class="material-name">Eurotop</div>
+    </div>
+    <div class="material-card" style="background-image: url('./pillow top form.webp');">
+      <div class="material-name">Pillowtop</div>
+    </div>
+    <div class="material-card" style="background-image: url('./gel memory form.webp');">
+      <div class="material-name">Gel Memory</div>
+    </div>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.material-card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</section>
+
+
+
+<!-- Our Products Section -->
+<section id="our-products" style="padding: 60px 20px; background: #f9f9f9;">
+
+
+<h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px; font-family: 'Pacifico', cursive; color: #333;">
+  Our exclusive brand Dream king
+</h2>
+<h4 style="text-align: center; font-size: 2.7rem; margin-bottom: 40px; font-family: 'Great Vibes', cursive; color: #555;">
+  Dream like a king
+</h4>
+
+
+
+
+  <div class="product-grid">
+    <!-- Product Card -->
+    <div class="product-card">
+      <img src="matress.jpg" alt="Mattress">
+      <h3>Mattress</h3>
+      <ul>
+        <li>High-density foam</li>
+        <li>Orthopedic support</li>
+        <li>All standard sizes</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <img src="simple form.jpg" alt="Foams">
+      <h3>Foams</h3>
+      <ul>
+        <li>Rebonded, HR, PU</li>
+        <li>Comfort & durability</li>
+        <li>Customized thickness</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <img src="pillow.jpg" alt="Pillows">
+      <h3>Pillows</h3>
+      <ul>
+        <li>Soft & memory foam</li>
+        <li>Neck & head support</li>
+        <li>Premium covers</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <img src="./matterss protector.jpg" alt="Mattress Protector">
+      <h3>Mattress Protector</h3>
+      <ul>
+        <li>Waterproof & breathable</li>
+        <li>Dust & allergy protection</li>
+        <li>Elastic fitting</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <img src="mattress topper.avif" alt="Mattress Topper">
+      <h3>Mattress Topper</h3>
+      <ul>
+        <li>Extra comfort layer</li>
+        <li>Breathable materials</li>
+        <li>Easy to attach</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <img src="sofa cum bed.jpg" alt="Sofa cum Bed">
+      <h3>Sofa cum Bed</h3>
+      <ul>
+        <li>Multi-purpose design</li>
+        <li>Compact & foldable</li>
+        <li>Space-saving comfort</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CSS Styling -->
+<style>
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
   }
 
-  .product-box {
-    background: #fff;
-    border-radius: 16px;
+  .product-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding-bottom: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    transition: transform 0.3s;
-    padding-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .product-box:hover {
+  .product-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
   }
 
-  .product-image {
+  .product-card img {
     width: 100%;
-    height: 300px;
-    overflow: hidden;
-  }
-
-  .product-image img {
-    width: 100%;
-    height: 100%;
+    height: 200px;
     object-fit: cover;
-    border-bottom: 1px solid #eee;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
-  .product-box h5 {
-    margin-top: 1rem;
-    font-weight: 600;
-    font-size: 1.2rem;
+  .product-card h3 {
+    text-align: center;
+    margin: 15px 0 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
   }
 
-  .product-features {
+  .product-card ul {
     list-style-type: disc;
-    padding-left: 20px;
-    text-align: left;
-    margin: 10px 20px 0;
+    padding: 0 20px;
     color: #555;
     font-size: 0.95rem;
   }
 
-  .product-features li {
-    margin-bottom: 4px;
-  }
-
-  @media (max-width: 767px) {
-    .product-image {
-      height: 250px;
-    }
+  .product-card ul li {
+    margin-bottom: 8px;
   }
 </style>
 
- <section class="container my-5" id="mattress-tabs">
-  <h2 class="text-center fw-bold mb-4">Mattress Zones</h2>
 
-  <!-- Tabs -->
-  <ul class="nav nav-tabs justify-content-center mb-4" id="mattressTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="bonded-tab" data-bs-toggle="tab" data-bs-target="#bonded" type="button" role="tab">Bonded</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="coir-tab" data-bs-toggle="tab" data-bs-target="#coir" type="button" role="tab">Coir</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="foam-tab" data-bs-toggle="tab" data-bs-target="#foam" type="button" role="tab">Foam</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="spring-tab" data-bs-toggle="tab" data-bs-target="#spring" type="button" role="tab">Spring</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="memory-tab" data-bs-toggle="tab" data-bs-target="#memory" type="button" role="tab">Memory</button>
-    </li>
-  </ul>
 
-  <!-- Tab Content -->
-  <div class="tab-content" id="mattressTabContent">
-    <!-- Bonded -->
-    <div class="tab-pane fade show active" id="bonded" role="tabpanel">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-3 text-center">
-          <img src="./ChatGPT Image Jul 19, 2025, 09_00_07 PM.png" alt="Bonded Mattress" class="img-fluid rounded shadow">
-        </div>
-        <div class="col-lg-6">
-          <h4 class="fw-bold">Bonded Mattress</h4>
-          <p>Bonded mattress is exclusively designed to provide firm support to your spine. It provides long-lasting relief from back aches and spine problems.</p>
-          <ul>
-            <li>✔️ Premium Quilted Fabric</li>
-            <li>✔️ PU Foam</li>
-            <li>✔️ HDPE Sheet</li>
-            <li>✔️ Bonded Foam</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<!-- OUR STORE SECTION START -->
+<section class="store-slider" id="our-store">
+ <h1 style="text-align: center; font-size: 2.7rem; margin-bottom: 40px; font-family: 'Great Vibes', cursive; color: #555;">
+  Our Store
+</h1>
+  <div class="slider-container">
+    <div class="slider-track">
+      <!-- Store Images (Repeat twice for seamless scroll) -->
+      <div class="store-slide"><img src="store1.jpg" alt="Store Image 1" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store2.jpg" alt="Store Image 2" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store3.jpg" alt="Store Image 3" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store4.jpg" alt="Store Image 4" onclick="openLightbox(this)"></div>
 
-    <!-- Coir -->
-    <div class="tab-pane fade" id="coir" role="tabpanel">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-3 text-center">
-          <img src="./ChatGPT Image Jul 21, 2025, 03_41_40 PM.png" alt="Coir Mattress" class="img-fluid rounded shadow">
-        </div>
-        <div class="col-lg-6">
-          <h4 class="fw-bold">Coir Mattress</h4>
-          <p>Coir mattresses are eco-friendly and provide excellent ventilation. Perfect for those who prefer firm surfaces with natural materials.</p>
-          <ul>
-            <li>✔️ Natural Coir</li>
-            <li>✔️ Breathable Material</li>
-            <li>✔️ Anti-fungal Properties</li>
-            <li>✔️ Durable Base</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+       <div class="store-slide"><img src="store1.jpg" alt="Store Image 1" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store2.jpg" alt="Store Image 2" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store3.jpg" alt="Store Image 3" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store4.jpg" alt="Store Image 4" onclick="openLightbox(this)"></div>
 
-    <!-- Foam -->
-    <div class="tab-pane fade" id="foam" role="tabpanel">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-3 text-center">
-          <img src="./ChatGPT Image Jul 21, 2025, 03_49_07 PM.png" alt="Foam Mattress" class="img-fluid rounded shadow">
-        </div>
-        <div class="col-lg-6">
-          <h4 class="fw-bold">Foam Mattress</h4>
-          <p>Foam mattresses offer great support and body contouring. Ideal for pressure relief and a soft feel throughout the night.</p>
-          <ul>
-            <li>✔️ High-Density Foam</li>
-            <li>✔️ Lightweight & Durable</li>
-            <li>✔️ No Motion Transfer</li>
-            <li>✔️ Anti-Allergic</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+       <div class="store-slide"><img src="store1.jpg" alt="Store Image 1" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store2.jpg" alt="Store Image 2" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store3.jpg" alt="Store Image 3" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store4.jpg" alt="Store Image 4" onclick="openLightbox(this)"></div>
 
-    <!-- Spring -->
-    <div class="tab-pane fade" id="spring" role="tabpanel">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-3 text-center">
-          <img src="./ChatGPT Image Jul 21, 2025, 04_04_55 PM.png" alt="Spring Mattress" class="img-fluid rounded shadow">
-        </div>
-        <div class="col-lg-6">
-          <h4 class="fw-bold">Spring Mattress</h4>
-          <p>Spring mattresses are known for bounce and breathability. Engineered with pocket or bonnell springs to enhance comfort.</p>
-          <ul>
-            <li>✔️ Pocket/Bonnell Springs</li>
-            <li>✔️ Ventilated Structure</li>
-            <li>✔️ Responsive Support</li>
-            <li>✔️ Great for Couples</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <!-- Memory -->
-    <div class="tab-pane fade" id="memory" role="tabpanel">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-3 text-center">
-          <img src="./mattress zone.jpeg" alt="Memory Foam Mattress" class="img-fluid rounded shadow">
-        </div>
-        <div class="col-lg-6">
-          <h4 class="fw-bold">Memory Foam Mattress</h4>
-          <p>Memory foam molds to your body, relieving pressure and offering superior comfort. Best for people with joint or spine issues.</p>
-          <ul>
-            <li>✔️ Orthopedic Support</li>
-            <li>✔️ Zero Motion Disturbance</li>
-            <li>✔️ Body Contouring</li>
-            <li>✔️ Luxurious Feel</li>
-          </ul>
-        </div>
-      </div>
+       <div class="store-slide"><img src="store1.jpg" alt="Store Image 1" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store2.jpg" alt="Store Image 2" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store3.jpg" alt="Store Image 3" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store4.jpg" alt="Store Image 4" onclick="openLightbox(this)"></div>
+
+
+       <div class="store-slide"><img src="store1.jpg" alt="Store Image 1" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store2.jpg" alt="Store Image 2" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store3.jpg" alt="Store Image 3" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store4.jpg" alt="Store Image 4" onclick="openLightbox(this)"></div>
+
+
+       <div class="store-slide"><img src="store1.jpg" alt="Store Image 1" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store2.jpg" alt="Store Image 2" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store3.jpg" alt="Store Image 3" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store4.jpg" alt="Store Image 4" onclick="openLightbox(this)"></div>
+
+      <div class="store-slide"><img src="store1.jpg" alt="Store Image 1" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store2.jpg" alt="Store Image 2" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store3.jpg" alt="Store Image 3" onclick="openLightbox(this)"></div>
+      <div class="store-slide"><img src="store4.jpg" alt="Store Image 4" onclick="openLightbox(this)"></div>
     </div>
   </div>
 </section>
+
+<!-- Lightbox popup -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  <img id="lightbox-img" src="" alt="Expanded Image">
+</div>
+
 <style>
-  #bonded img, #coir img, #foam img, #spring img, #memory img {
-  max-height: 320px;
-  object-fit: contain;
+/* Our Store Slider Section */
+.store-slider {
+  padding: 100px 20px;
+  background: #f5f5f5;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-#bonded ul, #coir ul, #foam ul, #spring ul, #memory ul {
-  list-style: none;
-  padding-left: 0;
+.store-slider .section-title {
+  font-size: 2.5rem;
+  color: #8b20b6;
+  margin-bottom: 50px;
+  font-family: 'Poppins', sans-serif;
 }
 
-#bonded ul li, #coir ul li, #foam ul li, #spring ul li, #memory ul li {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
+.slider-container {
+  overflow: hidden;
+  width: 100%;
 }
 
+.slider-track {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  animation: scrollStore 40s linear infinite;
+}
+
+.store-slide {
+  flex: 0 0 300px;
+}
+
+.store-slide img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.store-slide img:hover {
+  transform: scale(1.05);
+}
+
+/* Infinite scroll keyframes */
+@keyframes scrollStore {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Lightbox style */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.9);
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .store-slide {
+    flex: 0 0 250px;
+  }
+  .store-slide img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .store-slide {
+    flex: 0 0 200px;
+  }
+  .store-slide img {
+    height: 180px;
+  }
+}
 </style>
+
+<script>
+function openLightbox(imgElement) {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  lightboxImg.src = imgElement.src;
+  lightbox.style.display = "flex";
+}
+
+function closeLightbox(event) {
+  // Close only when clicking outside the image
+  if (event.target.id === "lightbox") {
+    document.getElementById("lightbox").style.display = "none";
+  }
+}
+</script>
+<!-- OUR STORE SECTION END -->
+
+
 
 
 <!-- Custom Banner Section -->
@@ -927,6 +969,7 @@
 
 </style>
 
+<!-- <p>king</p> -->
 
  <br>
  <br>
@@ -955,39 +998,33 @@
     </div>
 
     <!-- Awards Row -->
-   <section class="container py-5">
-  <div class="row g-4 justify-content-center">
-
-    <div class="col-12 col-md-4 col-lg-4">
-      <div class="award-box custom-shadow text-center p-4 rounded bg-white h-100">
-        <img src="./certificate 1.jpeg" alt="Jewels of Punjab" class="award-img mb-3">
-        <h6 class="fw-bold mb-1">Jewels of Punjab</h6>
-        <p class="small mb-0">By Shri Nitin Gadkari (Road & Transport Minister of India)</p>
+    <div class="row g-4 justify-content-center text-center">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="award-box custom-shadow bg-white rounded p-4 h-100">
+          <img src="certificate 1.jpeg" alt="Jewels of Punjab" class="award-img mb-3">
+          <h6 class="fw-bold mb-1">Jewels of Punjab</h6>
+          <p class="small mb-0">By Shri Nitin Gadkari (Road & Transport Minister of India)</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="award-box custom-shadow bg-white rounded p-4 h-100">
+          <img src="certificate2.jpeg" alt="Red Achievers Award" class="award-img mb-3">
+          <h6 class="fw-bold mb-1">Red Achievers Award</h6>
+          <p class="small mb-0">By Sunil Shetty (Red FM)</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="award-box custom-shadow bg-white rounded p-4 h-100">
+          <img src="certificate3.jpeg" alt="Noor Punjab Da Award" class="award-img mb-3">
+          <h6 class="fw-bold mb-1">Noor Punjab Da</h6>
+          <p class="small mb-0">By ABP News Group</p>
+        </div>
       </div>
     </div>
-
-    <div class="col-12 col-md-4 col-lg-4">
-      <div class="award-box custom-shadow text-center p-4 rounded bg-white h-100">
-        <img src="certificate2.jpeg" alt="Red Achievers Award" class="award-img mb-3">
-        <h6 class="fw-bold mb-1">Red Achievers Award</h6>
-        <p class="small mb-0">By Sunil Shetty (Red FM)</p>
-      </div>
-    </div>
-
-    <div class="col-12 col-md-4 col-lg-4">
-      <div class="award-box custom-shadow text-center p-4 rounded bg-white h-100">
-        <img src="certificate3.jpeg" alt="Noor Punjab Da Award" class="award-img mb-3">
-        <h6 class="fw-bold mb-1">Noor Punjab Da</h6>
-        <p class="small mb-0">By ABP News Group</p>
-      </div>
-    </div>
-
   </div>
 </section>
-</div>
-</section>
 
-<!-- 👇 CSS for image and shadow -->
+<!-- CSS -->
 <style>
   .award-img {
     height: 160px;
@@ -1013,12 +1050,6 @@
 </style>
 
 
-
-
-
-
-
-
 <div id="footer"></div>
 <footer class="footer-dark">
   <div class="container py-5">
@@ -1036,11 +1067,12 @@
       <div class="col-md-3">
         <h5 class="footer-heading">Quick Links</h5>
         <ul class="footer-links list-unstyled">
-          <li><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#timing">Timing</a></li>
-          <li><a href="#material">Material</a></li>
-          <li><a href="#products">Products</a></li>
+           <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#materials">Materials</a>
+      <a href="#our-products">Products</a>
+      <a href="#certificates-awards">certificate</a>
+      <a href="#footer">Contact</a>
         </ul>
       </div>
 
@@ -1049,7 +1081,9 @@
         <h5 class="footer-heading">Contact Us</h5>
         <p class="footer-contact">
           📍 Mohali, Punjab<br>
-          📞 +91 98765 43210<br>
+          📞 +91 8110000035<br>
+          📞 +91 7440000053<br>
+          📞 +91 8000206060<br>
           ✉️ info@manishafoam.com
         </p>
         <div class="footer-social">
@@ -1190,10 +1224,49 @@
 
 
 
+<!-- 🌐 Floating WhatsApp Button -->
+<a href="https://wa.me/917440000053" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Chat">
+</a>
+
+<!-- 💅 CSS for WhatsApp Button -->
+<style>
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: #25D366;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+  }
+
+  .whatsapp-float img {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .whatsapp-float {
+      bottom: 15px;
+      right: 15px;
+      padding: 8px;
+    }
+
+    .whatsapp-float img {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
-
 </html>
-<!-- # -->
