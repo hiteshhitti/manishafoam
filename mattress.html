@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orthobond Mattress</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fce3d3, #ffe9da);
+      color: #222;
+      position: relative;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar img {
+      height: 50px;
+      border-radius: 10px;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .navbar-links a:hover {
+      color: orange;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 0;
+      font-size: 18px;
+      border-bottom: 1px solid #444;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* Section layout */
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 30px;
+      max-width: 1200px;
+      margin: auto;
+      gap: 40px;
+      position: relative;
+    }
+
+    .text-box {
+      flex: 1;
+      min-width: 320px;
+      position: relative;
+    }
+
+    .text-box h1 {
+      font-size: 38px;
+      margin-bottom: 5px;
+      color: #b51f1f;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .text-box h1 span {
+      display: block;
+      font-size: 45px;
+      color: #111;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .text-box ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 15px 0;
+      font-size: 18px;
+    }
+
+    .text-box ul li::before {
+      content: "✔ ";
+      color: #b51f1f;
+      font-weight: bold;
+    }
+
+    .text-box p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .text-box h2 {
+      margin-top: 30px;
+      font-size: 28px;
+      color: #b51f1f;
+    }
+
+    .text-box h3 {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #111;
+    }
+
+    .features ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .features ul li {
+      margin-bottom: 12px;
+      font-size: 17px;
+    }
+
+    .features ul li b {
+      color: #000;
+    }
+
+    .image-box {
+      flex: 1;
+      min-width: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 550px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .image-box img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Back arrow inside box */
+    .material-back-arrow {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      background: #fff;
+      color: #b51f1f;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 50%;
+      padding: 6px 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    .material-back-arrow:hover {
+      background: #ffe2e2;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        flex-direction: column-reverse;
+        padding: 40px 20px;
+      }
+      .text-box, .image-box {
+        text-align: center;
+      }
+      .text-box h1 {
+        font-size: 32px;
+      }
+      .text-box h1 span {
+        font-size: 36px;
+      }
+
+      .material-back-arrow {
+        top: -15px;
+        left: -5px;
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <nav class="navbar">
+    <img src="backgroun1.jpg" alt="Logo" />
+    <div class="navbar-links">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#materials">Materials</a>
+      <a href="index.html#our-products">Products</a>
+      <a href="index.html#certificates-awards">Certificate</a>
+      <a href="index.html#footer">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#home" onclick="closeMenu()">Home</a>
+    <a href="index.html#about" onclick="closeMenu()">About</a>
+    <a href="index.html#materials" onclick="closeMenu()">Materials</a>
+    <a href="index.html#our-products" onclick="closeMenu()">Products</a>
+    <a href="index.html#certificates-awards" onclick="closeMenu()">Certificate</a>
+    <a href="index.html#footer" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("open");
+    }
+
+    function closeMenu() {
+      document.getElementById("mobileMenu").classList.remove("open");
+    }
+  </script>
+
+  <!-- ✅ Page Content -->
+  <div style="padding: 40px 20px; background: #fffaf6;">
+
+    <!-- Box 1 -->
+    <div style="background: #ffffff; border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); margin-bottom: 50px; padding: 10px; position: relative;">
+      <section class="section">
+        <div class="text-box">
+          <a href="index.html#our-products" class="material-back-arrow">←</a><br><br>
+
+          <h1>Soft Orthobond <span>Material</span></h1>
+          <ul>
+            <li>Orthorebond Foam</li>
+            <li>Pure HR Foam</li>
+          </ul>
+          <p><strong>Sizes Available:</strong> King, Queen & Custom Sizes</p>
+
+          <h2>Orthopaedic Rebonded Mattress</h2>
+          <p>Experience firm and supportive sleep with orthopaedic rebonded foam that aligns your spine and improves posture for a pain-free rest.</p>
+
+          <h3>Key Features:</h3>
+          <div class="features">
+            <ul>
+              <li><b>Firm Orthopaedic Support:</b> Proper lower back support and pressure relief.</li>
+              <li><b>Rebonded Foam Core:</b> High-density core ensures durability and long-lasting shape.</li>
+              <li><b>Motion Solution:</b> Reduces motion transfer for undisturbed sleep.</li>
+              <li><b>Durable & Low Maintenance:</b> No sagging and easy to clean.</li>
+              <li><b>Hypoallergenic Fabric Cover:</b> Soft, breathable and allergy-resistant cover.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="orthobond mattress.webp" alt="Red Orthobond Mattress"/>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOX 2: Natural Latex Mattress -->
+    <div style="background: #ffffff; border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); padding: 10px;">
+      <section class="section">
+        <div class="text-box">
+          <h1>Natural Latex <span>Material</span></h1>
+          <ul>
+            <li>American Knitted Fabric</li>
+            <li>Softy Quilting Foam</li>
+            <li>Natural Latex</li>
+            <li>Organic Softy Foam</li>
+            <li>Anti-Bacterial HR Foam</li>
+          </ul>
+          <p><strong>Sizes Available:</strong> King, Queen & Custom Sizes</p>
+
+          <h2>Latex Mattress – Naturally Supportive, Breathably Comfortable</h2>
+          <p>Sink into the perfect balance of comfort and support with our premium Latex Mattress. Crafted from natural or blended latex, this mattress gently conforms to your body while maintaining excellent spinal alignment. Its responsive, buoyant feel relieves pressure points without the “sinking” sensation of memory foam.</p>
+
+          <h3>Key Features:</h3>
+          <div class="features">
+            <ul>
+              <li><b>Natural Latex Comfort:</b> Offers responsive cushioning with a slight bounce, promoting healthy posture and restful sleep.</li>
+              <li><b>Breathable & Temperature-Regulating:</b> Open-cell structure and natural ventilation keep the mattress cool and dry throughout the night.</li>
+              <li><b>Hypoallergenic & Eco-Friendly:</b> Resistant to dust mites, mold, and allergens, with sustainable and toxin-free materials.</li>
+              <li><b>Durable Construction:</b> Retains shape and support for years without sagging or deformation.</li>
+              <li><b>Minimal Motion Transfer:</b> Absorbs movement for undisturbed sleep with a partner.</li>
+            </ul>
+          </div>
+
+          <p>Whether you’re looking for a healthier sleep environment or luxurious comfort with lasting durability, this latex mattress is a smart investment in better sleep.</p>
+        </div>
+
+        <div class="image-box">
+          <img src="natural-latex-mattress-4.webp" alt="Natural Latex Mattress"/>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+
+
+
+  <div id="footer"></div>
+<footer class="footer-dark">
+  <div class="container py-5">
+    <div class="row gy-4 justify-content-between">
+      
+      <!-- Brand / About -->
+      <div class="col-md-4">
+        <h3 class="footer-title">Manishafoam</h3>
+        <p class="footer-text">
+          Elevating interiors with premium blinds, curtains, and wallpapers. Tailored for comfort & luxury living.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-3">
+        <h5 class="footer-heading">Quick Links</h5>
+        <ul class="footer-links list-unstyled">
+     <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#materials">Materials</a>
+      <a href="index.html#our-products">Products</a>
+      <a href="index.html#certificates-awards">Certificate</a>
+      <a href="index.html#footer">Contact</a>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-4">
+        <h5 class="footer-heading">Contact Us</h5>
+        <p class="footer-contact">
+          📍 Mohali, Punjab<br>
+          📞 +91 8110000035<br>
+          📞 +91 7440000053<br>
+          📞 +91 8000206060<br>
+          ✉️ info@manishafoam.com
+        </p>
+        <div class="footer-social">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-divider my-4">
+
+    <p class="text-center footer-bottom-text">&copy; 2025 Manisha foam. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+<style>
+    .footer-dark {
+  background-color: #111;
+  color: #ddd;
+  padding-top: 3rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+.footer-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: #aaa;
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+.footer-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffc107;
+}
+
+.footer-contact {
+  font-size: 0.95rem;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.footer-social a {
+  color: #bbb;
+  font-size: 1.3rem;
+  margin-right: 1rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.footer-social a:hover {
+  transform: scale(1.2);
+  color: #ffc107;
+}
+
+.footer-divider {
+  border-top: 1px solid #333;
+}
+
+.footer-bottom-text {
+  font-size: 0.9rem;
+  color: #777;
+}
+.carousel-caption {
+  top: 50%;
+  transform: translateY(-50%);
+  display: block !important;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 90%;
+  margin: auto;
+  text-align: center;
+  color: #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+}
+
+/* HEADINGS */
+.carousel-caption h5 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.carousel-caption p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* 📱 Mobile View (Left Align & Move Up Slightly) */
+@media (max-width: 576px) {
+  .carousel-caption {
+    top: 30%; /* move up */
+    left: 5%;
+    right: auto;
+    transform: translateY(-30%);
+    text-align: left; /* left-align text */
+    max-width: 90%;
+    padding: 1rem;
+  }
+
+  .carousel-caption h5 {
+    font-size: 1.8rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+  }
+}
+
+</style>
+
+
+
+<!-- 🌐 Floating WhatsApp Button -->
+<a href="https://wa.me/917440000053" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Chat">
+</a>
+
+<!-- 📸 Floating Instagram Button -->
+<a href="https://www.instagram.com/manisha_foam_industry?igsh=MXhsMXlzcHYxMXBpZw%3D%3D&utm_source=qr" class="instagram-float" target="_blank" aria-label="View on Instagram">
+  <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram">
+</a>
+
+<!-- 💅 CSS for Floating Buttons -->
+<style>
+  .whatsapp-float,
+  .instagram-float {
+    position: fixed;
+    right: 20px;
+    z-index: 999;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .whatsapp-float {
+    bottom: 20px;
+    background-color: #25D366;
+  }
+
+  .instagram-float {
+    bottom: 90px; /* 👈 Increased spacing */
+    background-color: #E1306C;
+  }
+
+  .whatsapp-float:hover,
+  .instagram-float:hover {
+    transform: scale(1.1);
+  }
+
+  .whatsapp-float img,
+  .instagram-float img {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .whatsapp-float {
+      bottom: 15px;
+      right: 15px;
+      padding: 8px;
+    }
+
+    .instagram-float {
+      bottom: 90px; /* 👈 Increased spacing for mobile too */
+      right: 15px;
+      padding: 8px;
+    }
+
+    .whatsapp-float img,
+    .instagram-float img {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>
+
+</body>
+</html>
